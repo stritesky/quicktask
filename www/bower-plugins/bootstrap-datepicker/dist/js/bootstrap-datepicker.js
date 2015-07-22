@@ -235,7 +235,6 @@
 				return /^auto|left|right|top|bottom$/.test(word);
 			});
 			o.orientation = {x: 'auto', y: 'auto'};
-			console.log(plc);
 			if (!_plc || _plc === 'auto')
 				; // no action
 			else if (plc.length === 1){
@@ -261,7 +260,6 @@
 				});
 				o.orientation.y = _plc[0] || 'auto';
 			}
-			console.log(o.orientation);
 			if (o.defaultViewDate) {
 				var year = o.defaultViewDate.year || new Date().getFullYear();
 				var month = o.defaultViewDate.month || 0;

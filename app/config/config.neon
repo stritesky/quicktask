@@ -29,11 +29,11 @@ extensions:
     doctrine: Kdyby\Doctrine\DI\OrmExtension
 
 doctrine:
-    user: root
-    password: test
-    dbname: quicktask
+    user:
+    password:
+    dbname:
     metadata:
         App: %appDir%
 
     console:
-        url: http://quicktask.local/
+        url: http://quicktask.com/
