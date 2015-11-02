@@ -11,8 +11,12 @@ class InsertTaskGroup extends Control
     /** @var TaskGroupRepository @inject*/
     public $taskGroupRepository;
 
+    /**
+     * @param TaskGroupRepository $taskGroupRepository
+     */
     public function __construct(TaskGroupRepository $taskGroupRepository)
     {
+        parent::__construct();
         $this->taskGroupRepository = $taskGroupRepository;
     }
 

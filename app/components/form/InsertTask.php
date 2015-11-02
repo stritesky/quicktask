@@ -17,8 +17,13 @@ class InsertTask extends Control
     /** @var number */
     public $idTaskGroup;
 
+    /**
+     * @param TaskRepository $taskRepository
+     * @param TaskGroupRepository $taskGroupRepository
+     */
     public function __construct(TaskRepository $taskRepository, TaskGroupRepository $taskGroupRepository)
     {
+        parent::__construct();
         $this->taskRepository = $taskRepository;
         $this->taskGroupRepository = $taskGroupRepository;
     }
@@ -30,6 +35,9 @@ class InsertTask extends Control
         $template->render();
     }
 
+    /**
+     * @param int $idTaskGroup
+     */
     public function setTaskGroupId($idTaskGroup)
     {
         $this->idTaskGroup = $idTaskGroup;

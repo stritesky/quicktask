@@ -54,6 +54,9 @@ class TaskPresenter extends BasePresenter
         return $control;
     }
 
+    /**
+     * @return \App\Components\Form\InsertTask
+     */
     protected function createComponentInsertTaskForm()
     {
         $control = $this->insertTaskFactory->create();
