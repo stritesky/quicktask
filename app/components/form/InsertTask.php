@@ -26,7 +26,7 @@ class InsertTask extends Control
     public function render()
     {
         $template = $this->template;
-        $template->setFile(__DIR__ . '/InsertTask.latte');
+        $template->setFile(__DIR__ . '/templates/InsertTask.latte');
         $template->render();
     }
 

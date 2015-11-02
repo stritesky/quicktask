@@ -3,3 +3,4 @@ temp/*
 composer.lock
 log/*
 vendor/*
+www/bower-plugins/*
