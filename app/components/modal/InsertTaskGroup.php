@@ -19,7 +19,7 @@ class InsertTaskGroup extends Control
     public function render()
     {
         $template = $this->template;
-        $template->setFile(__DIR__ . '/InsertTaskGroup.latte');
+        $template->setFile(__DIR__ . '/templates/InsertTaskGroup.latte');
         $template->render();
     }
 
