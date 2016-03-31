@@ -1,24 +1,61 @@
 {block content}
-    {control insertTaskForm}
+    {control searchTaskForm}
+    {snippet tasksForm}
+        {control insertTaskForm}
+    {/snippet}
     <div class="row">
         <div class="col-md-12">
             {snippet tasks}
                 <ul class="list-group">
                     {foreach $tasks as $task}
                         <li class="list-group-item">
-                            <input type="checkbox" />
+                            <input type="checkbox" data-link="{link completedTaskGroup! $task["id"]}" {if $task['completed']}checked="checked" {/if} />
                             <span>{$task['name']}</span>
                             <span class="label label-info">{$task['date']|date:'d.m.Y'}</span>
+                                <select class="form-group">
+                                    {foreach $taskGroups as $taskGroup}
+                                    <option class="change" {if $taskGroup['id'] == $task['taskGroup']->getId()}selected{/if} data-link="{link changeTaskGroup! 'id' => $task['id'],'taskGroupId' => $taskGroup['id']}">{$taskGroup['name']}</option>
+                                    {/foreach}
+                                </select>
                         </li>
                     {/foreach}
                 </ul>
             {/snippet}
         </div>
     </div>
+
 {/block}
 
+
 {block scripts}
+
     {include parent}
+    <script>
+        $(function(){
+            $(':checkbox').livequery(function(){
+                $(this).iCheck({
+                    checkboxClass: 'icheckbox_minimal-green',
+                    radioClass: 'iradio_minimal-green',
+                    increaseArea: '20%' // optional
+                });
+                $(this).on('ifChanged', function(event){
+                    var link = $(this).data('link');
+                    $.get(link);
+                });
+            });
+
+            $('select').livequery(function(){
+                var select = $(this);
+               $(this).change(function(){
+                   select.find("option:selected" ).each(function() {
+                       var link = $(this).data('link');
+                       console.log(link);
+                       location.href = link;
+                   });
+               });
+            });
+        });
+    </script>
 {/block}
 
 {block head}

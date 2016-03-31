@@ -4,6 +4,7 @@ namespace App\Model\Repository;
 use App\Model\Entity;
 use Kdyby\Doctrine\EntityManager;
 
+
 class TaskRepository extends AbstractRepository
 {
     /** @var \Kdyby\Doctrine\EntityRepository */
@@ -30,8 +31,9 @@ class TaskRepository extends AbstractRepository
      */
     public function getByTaskGroup($idTaskGroup)
     {
-        return $this->task->findBy(array('taskGroup' => $idTaskGroup));
+        return $this->task->findBy(array('taskGroup' => $idTaskGroup),array('date' => 'asc'));
     }
+
 
     /**
      * @param Entity\Task $task

@@ -49,6 +49,7 @@ class InsertTask extends Control
     protected function createComponentInsertTaskForm()
     {
         $form = new Form();
+        $form->getElementPrototype()->addAttributes(array('class' => 'ajax'));
         $form->addText('name', 'Name')
             ->setRequired('Please fill task name');
         $form->addText('date', 'Date')
@@ -73,6 +74,13 @@ class InsertTask extends Control
         $taskEntity->setTaskGroup($taskGroup);
         $this->taskRepository->insert($taskEntity);
         $this->presenter->flashMessage('Task was created', 'success');
-        $this->redirect('this');
+
+        if ($this->getPresenter()->isAjax()){
+             $this->getPresenter()->redrawControl('tasks');
+             $this->getPresenter()->redrawControl('tasksForm');
+             $form->setValues(array("name"=>"","date"=>""));
+        } else {
+            $this->getPresenter()->redirect('this');
+        }
     }
 }
